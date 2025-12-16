@@ -1,0 +1,25 @@
+// first page style
+@import './mixin';
+@import './generl';
+@import './header';
+@import './_profile.scss';
+@import './_main.scss';
+@import './_footer.scss';
+
+// Register page styles
+@import './_login.scss';
+@import './_register.scss';
+@import './_logout.scss';
+
+// Shop page styles
+@import './_shop.scss';
+
+// 3D model page styles
+@import './_3d.scss';
+
+// admin page styles
+@import './_admin.scss';
+
+// Toast styles
+@import './_toast.scss';
+

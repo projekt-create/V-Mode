@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <title>V-mode</title>
+</head>
+<body>
+    <div class="toast" id="success" 
+    data-aos="fade-down"
+    data-aos-easing="linear"
+    data-aos-duration="1500">
+        Succses
+    </div>
+    <div class="toast" id="error"
+    data-aos="fade-down"
+    data-aos-easing="linear"
+    data-aos-duration="1500">
+        Error!
+    </div>
+    
+    <!-- Home page html code -->
+    <header>
+        <div class="header">
+            <h1 class="header__title" data-aos="fade-down" data-aos-duration="1500">V-mode</h1>
+            <div class="header__list">
+                <a class="header__link" href="#" data-aos="fade-down" data-aos-duration="1500">Home</a>
+                <a class="header__link" href="#" data-aos="fade-down" data-aos-duration="2000">Shop</a>
+                <a class="header__link" href="#" data-aos="fade-down" data-aos-duration="2500">Contact</a>
+            </div>
+            <div class="header__box">
+                <button class="header__button header__button-login" data-aos="fade-down" data-aos-duration="2000">Login</button>
+                <button class="header__button header__button-register" data-aos="fade-down" data-aos-duration="2000">Register</button>
+            </div>
+            <div class="header__box-logout">
+                <button class="header__button header__button-delet" data-aos="fade-down" data-aos-duration="2000">Delet</button>
+                <button class="header__button header__button-logout" data-aos="fade-down" data-aos-duration="2000">Logout</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="left">
+            <h2 class="left__title" data-aos="fade-down" data-aos-duration="1500">V-mode</h2>
+            <p class="left__text" data-aos="fade-down" data-aos-duration="2000">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, pariatur.</p>
+            <div class="left__box">
+                <div class="left__button shop" data-aos="fade-down" data-aos-duration="2500"><button class="shop__button bg">Shop</button></div>
+                <div class="left__button about" data-aos="fade-down" data-aos-duration="3000"><button class="about__button bg">About</button></div>
+            </div>
+        </div>
+        <div class="right">
+            <!-- 3D-Robot model -->
+            <spline-viewer data-aos="fade-down" data-aos-duration="2000" class="robot-3d" url="https://prod.spline.design/iTioBZYybZXG9ad6/scene.splinecode"></spline-viewer>
+        </div>
+        <div class="main__box"></div>
+    </main>
+    <footer>
+        <div class="footer">
+            <p class="footer__logo">V-mode</p>
+            <div class="footer__list">
+                <a class="footer__link" href="#" >Home</a>
+                <a class="footer__link" href="#" >Shop</a>
+                <a class="footer__link" href="#" >Contact</a>
+            </div>
+            <div class="footer__box">
+                <a href="https://app.spline.design/community/file/9d60c478-0e28-4514-a1ac-5605c039d6e6" target="_blank" class="footer__robot-info">3D robot model</a>
+                <a href="https://www.youtube.com/watch?v=oskiEydAaok&t=868s" target="_blank" class="footer__robot-info">How to use 3D model</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Register page html code -->
+    <div class="register">
+        <form class="register__form">
+            <h3 class="register__close">X</h3>
+            <h2 class="register__title">Register</h2>
+            <input class="register__input register__input-username" type="text" placeholder="Username">
+            <input class="register__input register__input-email" type="email" placeholder="Email">
+            <input class="register__input register__input-password" type="password" placeholder="Password">
+            <button class="register__button">Register</button>
+        </form>
+    </div>
+    
+    <!-- Login page html code -->
+    <div class="login">
+        <p class="secret secret-password">jklg*_56</p>
+        <p class="secret secret-username">derek</p>
+        <form class="login__form">
+            <h3 class="login__close">X</h3>
+            <h2 class="login__title">Login</h2>
+            <input class="login__input login__input-email" type="text" placeholder="Username">
+            <input class="login__input login__input-password" type="password" placeholder="Password">
+            <button class="login__button">Login</button>
+        </form>
+    </div>
+    
+    <!-- Java script files -->
+    <script src="js/script.js"></script>
+    
+    <!-- Animation on scroll, JS libery -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    
+    <!-- 3D Robot js code -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.16/build/spline-viewer.js"></script>
+
+</body>
+</html>

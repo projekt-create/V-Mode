@@ -1,0 +1,127 @@
+@property --angle{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+
+
+main{
+    width: clamp(300px, 90%, 1200px);
+    height: auto;
+    margin: 50px auto;
+    margin-top: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 0 20px;
+
+    .left{
+        width: 400px;
+        height: auto;
+        margin-top: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: start;
+        gap: 20px;
+
+        &__title{
+            font-size: 48px;
+            color: #fff;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+        }
+
+        &__text{
+            font-size: 16px;
+            color: #fff;
+        }
+
+        &__box{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        &__button{
+            width: 40%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            border-radius: 10px;
+            background-image: conic-gradient(from var(--angle), #e100ff, #a402b9, #000,#000);
+            animation: spin 3s linear infinite;
+            transition: all 0.3s ease-in-out;
+
+            &:nth-child(2){
+                animation-delay: 0.5;
+                animation-duration: 3.5s;
+            }
+
+            &:hover{
+                transition: all 0.3s ease-in-out;
+                background-image: conic-gradient(from var(--angle), #ffffff, #ffffff, #000,#000);
+            }
+
+            &:hover .bg{
+                transition: all 0.3s ease-in-out;
+                color: #a402b9;
+                text-shadow: 0px 0px 4px rgb(212, 0, 255),
+                        0px 0px 15px rgb(183, 0, 219),
+                        0px 0px 18px rgb(181, 15, 214),
+                        0px 0px 20px rgb(127, 15, 150),
+                        0px 0px 34px rgb(146, 17, 172);
+            }
+        }
+
+        .bg{
+            width: 98%;
+            height: 90%;
+            border-radius: 10px;
+            border: none;
+            border-radius: 10px;
+            background: #000;
+            font-weight: 600px;
+            font-size: 16px;
+            color: #fff;
+        }
+    }
+
+    .main__box{
+        width: 300px;
+        height: 200px;
+        background: #000;
+        position: absolute;
+        bottom: 0%;
+        right: 0%;
+        z-index: 999;
+    }
+}
+
+
+@media (max-width: 1024px){
+    main{
+        flex-direction: column;
+        margin-top: 400px;
+    }
+    .robot-3d{
+        width: 80% !important;
+        position: absolute;
+        top: -10%;
+        right: 0%;
+    }
+}
