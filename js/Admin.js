@@ -1,3 +1,29 @@
+// Api variables
+fetch('https://fakestoreapi.com/products')
+  .then(response => response.json())
+  .then(data => showData(data));
+
+// Showdata
+function showData(data) {
+    ProfileInfoCards.innerHTML = "";
+
+    data.forEach(element => {
+        ProfileInfoCards.innerHTML += `
+        <div class="card">
+            <div class="card__img">
+                <img src="${element.image}" alt="" class="card__img-img">
+            </div>
+            <div class="card__info">
+                <p class="card__info-title">${element.title}</p>
+                <p class="card__info-category">${element.category}</p>
+                <p class="card__info-description">${element.description}</p>
+                <p class="card__info-price">$${element.price}</p>
+            </div>
+        </div>
+        `;
+    });
+}
+
 // Section variables
 const SectionWrapper = document.querySelector("section");
 const section = document.querySelector(".section");
@@ -17,8 +43,8 @@ const CreateCard = document.querySelector(".create__card");
 // Delete card variables
 const DeleteCard = document.querySelector(".delete__card");
 
-// Edit card variables
-const EditCard = document.querySelector(".edit__card");
+// Update card variables
+const UpdateCard = document.querySelector(".edit__card");
 
 // Serch card variables
 const SearchCard = document.querySelector("#Search");
@@ -38,9 +64,12 @@ const ProfileInfoCards = document.querySelector(".section__right__bottom");
 const ToastSave = document.querySelector("#save");
 
 // Profile show
-SectionProfile.addEventListener("click", () => {
-    Profile.style.display = "flex";
-});
+if (SectionProfile) {
+    SectionProfile.addEventListener("click", () => {
+        Profile.style.display = "flex";
+    });
+}
+
 
 // Profile hide
 ProfileButtonCancel.addEventListener("click", () => {
@@ -53,17 +82,6 @@ ProfileButtonSave.addEventListener("click", () => {
     localStorage.setItem("email", ProfileInputEmail.value);
     localStorage.setItem("password", ProfileInputPassword.value);
     Profile.style.display = "none";
-
-    ProfileInfoCards.innerHTML += `
-    <div class="user">
-        <img src="${localStorage.getItem("profileImage") || "../img/profile.png"}" class="user-img">
-        <div class="user-info">
-            <p class='user-info-name'>Name: ${localStorage.getItem("username") || "No name"}</p>
-            <p class='user-info-email'>Email: ${localStorage.getItem("email") || "No email"}</p>
-            <p class='user-info-password'> Password: ${localStorage.getItem("password") || "No password"}</p>
-        </div>
-    </div>
-    `
     
     ToastSave.style.display = "flex";
     ToastSave.style.transition = "1s ease-in-out";
@@ -86,11 +104,11 @@ ProfileInputFile.addEventListener("change", () => {
     const reader = new FileReader();
     
     reader.onload = () => {
-        const base64Img = reader.result;
+        const img = reader.result;
         
-        localStorage.setItem("profileImage", base64Img);
+        localStorage.setItem("profileImage", img);
         
-        ProfileImg.src = base64Img;
+        ProfileImg.src = img;
     };
     
     reader.readAsDataURL(file);
@@ -104,12 +122,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-
-
 // Profile data
-ProfileInputUsername.value = localStorage.getItem("username");
-ProfileInputEmail.value = localStorage.getItem("email");
-ProfileInputPassword.value = localStorage.getItem("password");
+ProfileInputUsername.value = localStorage.getItem("username") || "";
+ProfileInputEmail.value = localStorage.getItem("email") || "";
+ProfileInputPassword.value = localStorage.getItem("password") || "";
+
 
 // Section hide
 SectionHide.addEventListener("click", () => {
@@ -142,63 +159,29 @@ SectionLogout.addEventListener("click", () => {
     window.location.href = "../index.html";
 });
 
-// create card
-CreateCard.addEventListener("click", () => {
-    ProfileInfoCards.innerHTML += `
-    <div class="user">
-        <img src="${localStorage.getItem("profileImage") || "../img/profile.png"}" class="user-img">
-        <div class="user-info">
-            <p class='user-info-name'>Name: ${localStorage.getItem("username") || "No name"}</p>
-            <p class='user-info-email'>Email: ${localStorage.getItem("email") || "No email"}</p>
-            <p class='user-info-password'> Password: ${localStorage.getItem("password") || "No password"}</p>
-        </div>
-    </div>
-    `
-});
-
-// edit card
-EditCard.addEventListener("click", () => {
-    ProfileInfoCards.innerHTML += `
-    <div class="user">
-        <img src="${localStorage.getItem("profileImage") || "../img/profile.png"}" class="user-img">
-        <div class="user-info">
-            <p class='user-info-name'>Name: ${localStorage.getItem("username") || "No name"}</p>
-            <p class='user-info-email'>Email: ${localStorage.getItem("email") || "No email"}</p>
-            <p class='user-info-password'> Password: ${localStorage.getItem("password") || "No password"}</p>
-        </div>
-    </div>
-    `
-});
-
-// search card
-SearchCard.addEventListener("input", () => {
-    const searchValue = SearchCard.value.toLowerCase();
-    const users = document.querySelectorAll(".user");
-    users.forEach((user) => {
-        const name = user.querySelector(".user-info-name").textContent.toLowerCase();
-        if (name.includes(searchValue)) {
-            user.style.display = "flex";
-        } else {
-            user.style.display = "none";
-        }
-    });
-});
-
 // delete card
 DeleteCard.addEventListener("click", () => {
     if (SearchCard.value === "") {
-        const searchValue = SearchCard.value.toLowerCase();
-        const users = document.querySelectorAll(".user");
-        users.forEach((user) => {
-            const name = user.querySelector(".user-info-name").textContent.toLowerCase();
-            if (name.includes(searchValue)) {
-                user.style.display = "none";
-            }
+        const cards = document.querySelectorAll(".card"); 
+        cards.forEach(card => {
+            card.style.display = "none";
         });
-    }else{
-        const user = document.querySelectorAll(".user");
-        user.forEach((user) => {
-            user.style.display = "none";
+    } else {
+        const cards = document.querySelectorAll(".card"); 
+        cards.forEach(card => {
+            const title = card.querySelector(".card__info-title").innerText.toLowerCase();
+            card.style.display = title.includes(SearchCard.value) ? "none" : "flex";
         });
     }
+});
+
+// search card
+SearchCard.addEventListener("input", (e) => {
+    const value = e.target.value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const title = card.querySelector(".card__info-title").innerText.toLowerCase();
+        card.style.display = title.includes(value) ? "flex" : "none";
+    });
 });

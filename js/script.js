@@ -33,6 +33,9 @@ const LoginButton = document.querySelector('.login__button');
 // Document variables
 const About = document.querySelector('.about');
 
+// Add card
+
+
 // RegEx variables
 const RegExUsername = /^[a-zA-Z0-9]{3,16}$/;
 const RegExEmail = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
@@ -73,6 +76,23 @@ const HandelSubmit = (e) => {
             window.location.href = '../pages/admin.html';
             localStorage.setItem('username', user.username);
             localStorage.setItem('password', user.password);
+
+            fetch(ApiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+                })
+                .then(res => res.json())
+                .then(data => { 
+                    const token = data.token;
+                    console.log(token);
+                    
+                    localStorage.setItem('token', token);
+                }); 
+
+                
 
             loginInputEmail.value = '';
             loginInputPassword.value = '';
@@ -284,6 +304,7 @@ HeaderButtonDelet.addEventListener('click', () => {
     localStorage.removeItem('password');
     localStorage.removeItem('email');
     localStorage.removeItem('token');
+    localStorage.removeItem('profileImage');
     HeaderBox.style.display = 'flex';
     HeaderBoxLogout.style.display = 'none';
     HeaderButtonLogout.style.display = 'none';

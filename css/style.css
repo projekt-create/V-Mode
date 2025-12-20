@@ -811,40 +811,69 @@ section {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 0 20px rgba(4, 105, 0, 0.2), 0 0 30px rgba(0, 165, 0, 0.452), 0 0 40px rgba(31, 187, 0, 0.534), 0 0 50px rgba(28, 165, 0, 0.842);
 }
 
-.user {
+.card {
   width: 100%;
-  height: 70px;
+  height: 80px;
+  border: 1px solid #fff;
   display: flex;
   align-items: center;
-  gap: 50px;
-  border-bottom: 1px solid #fff;
+  justify-content: space-between;
   padding: 0 20px;
 }
-.user-img {
-  width: 40px;
-  height: 40px;
+.card__img {
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
+  cursor: pointer;
 }
-.user-info {
-  width: auto;
-  height: auto;
+.card__img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card__info {
+  width: 70%;
+  height: 80%;
   display: flex;
-  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
-.user-info-name {
+.card__info-category {
+  width: 10%;
+  color: #fff;
   font-weight: 600px;
   font-size: 16px;
-  color: #fff;
 }
-.user-info-email {
+.card__info-title {
+  width: 15%;
+  color: #fff;
   font-weight: 600px;
   font-size: 16px;
-  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
-.user-info-password {
+.card__info-description {
+  width: 40%;
+  color: #fff;
   font-weight: 600px;
   font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.card__info-price {
+  width: 10%;
   color: #fff;
+  font-weight: 600px;
+  font-size: 16px;
 }
 
 .toast {
