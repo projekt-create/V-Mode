@@ -19,6 +19,23 @@
 
     <div class="close-spline">X</div>
 
+    <!-- Create / Edit Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="modalTitle">Create New Product</h2>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+                <input type="text" id="title" placeholder="Title" required>
+                <input type="number" id="price" placeholder="Price" step="0.01" required>
+                <textarea id="description" placeholder="Description" required></textarea>
+                <input type="text" id="category" placeholder="Category" required>
+                <input type="url" id="image" placeholder="Image URL" required>
+                <button type="submit" id="submitBtn">Create</button>
+            </form>
+        </div>
+    </div>
+
     <section>
         <div class="section">
             <div class="section__left">
@@ -51,8 +68,6 @@
                 <div class="section__right__top">
                     <div class="section__right__top-box">
                         <button class="section__right__top-btn create__card" data-aos="fade-down" data-aos-duration="1500" >Create</button>
-                        <button class="section__right__top-btn edit__card" data-aos="fade-down" data-aos-duration="2000" >Update</button>
-                        <button class="section__right__top-btn delete__card" data-aos="fade-down" data-aos-duration="2500" >Delete</button>
                     </div>
                     <input type="text" placeholder="Search" id="Search" data-aos="fade-down" data-aos-duration="3000" class="section__right__top-input search">
                 </div>
